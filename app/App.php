@@ -33,7 +33,7 @@ class App{
                     $this ->__controller = new $this ->__controller();
                     unset($urlArr[0]);
                     }else{
-                        echo 'err 1';
+                        echo 'err class in controller';
                     }
             } else{
                 $this->loadError("404");
@@ -52,7 +52,7 @@ class App{
             if (method_exists($this->__controller, $this->__action)){
                 call_user_func([$this ->__controller, $this -> __action],$this -> __params);
             }else{
-                echo 'err 3';
+                echo 'err action';
             }
     }
 
