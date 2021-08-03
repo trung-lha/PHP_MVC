@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('http://localhost:8888/PHP_MVC/login');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +31,7 @@
             <a class="active" href="logout.php">Logout</a>
         </div>
     </div>
+    <h2>Welcome <?php echo $_SESSION['username'] . " !"; ?></h2>
     <div>
         <div class="form-popup" id="add-form">
             <form class="form-container" method="post" id="add_product">
@@ -54,7 +61,7 @@
     </div>
     <div id="load_data_ajax">
         <?php
-            print_r($product_list);
+        print_r($product_list);
         ?>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,7 +117,7 @@
                         },
                         success: function(data) {
                             console.log(data);
-                            if (data == "1"){
+                            if (data == "1") {
                                 alert('Product added successfully!!');
                                 $('#add_product')[0].reset();
                                 show_hide();
@@ -119,7 +126,7 @@
                                 event.preventDefault();
                                 alert('Product code you have entered is already exits !!');
                             }
-                            
+
                         },
                     });
                 }
@@ -174,7 +181,7 @@
                         },
                         success: function(data) {
                             console.log(data);
-                            if (data == "1"){
+                            if (data == "1") {
                                 alert('Product information update successfully!!');
                                 fetch_data();
                             } else {
