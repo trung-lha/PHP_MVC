@@ -10,6 +10,12 @@ class Controller
                 return new $model();
             }
         }
+        if (file_exists(_DIR_ROOT . '/app/models/UserModel.php')) {
+            require_once _DIR_ROOT . '/app/models/UserModel.php';
+            if (class_exists($model)) {
+                return new $model();
+            }
+        }
         return false;
     }
 
