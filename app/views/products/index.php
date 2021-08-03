@@ -1,8 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['username'])) {
-    header('http://localhost:8888/PHP_MVC/login');
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +23,7 @@ if (!isset($_SESSION['username'])) {
     <div class="header">
         <a href="#default" class="logo">Mini Project PHP</a>
         <div class="header-right">
-            <a class="active" href="logout.php">Logout</a>
+            <a class="active" href="http://localhost:8888/PHP_MVC/logout">Logout</a>
         </div>
     </div>
     <h2>Welcome <?php echo $_SESSION['username'] . " !"; ?></h2>

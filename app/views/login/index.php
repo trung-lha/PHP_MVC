@@ -23,8 +23,8 @@
                 </div>
                 <div class="field-group">
                     <div><label for="password">Password</label></div>
-                    <div><input required name="password" type="password" value="<?php if (isset($_COOKIE["userpassword"])) {
-                                                                                    echo $_COOKIE["userpassword"];
+                    <div><input required name="password" type="password" value="<?php if (isset($_COOKIE["user_password"])) {
+                                                                                    echo $_COOKIE["user_password"];
                                                                                 } ?>" class="input-field">
                     </div>
                     <div class="field-group">
@@ -34,6 +34,7 @@
                         <div class="field-group">
                             <div><input type="submit" name="login" value="Login" class="form-submit-button"></span></div>
                         </div>
+
         </form>
     </div>
 
