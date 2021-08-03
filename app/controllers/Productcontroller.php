@@ -11,6 +11,7 @@ class ProductController extends Controller
 
     public function index()
     {
+
         $all = $this->modelProduct->buildQueryParams([
             "select" => "*",
             "where" => "",
@@ -23,12 +24,15 @@ class ProductController extends Controller
 
     public function fetchData()
     {
-        $out_put = '';
-        $allProducts = $this->modelProduct->buildQueryParams([
-            "select" => "*",
-            "where" => "",
-        ])->selectAll();
-        $out_put .= '
+        if (!isset($_SESSION['username'])) {
+            header('http://localhost:8888/PHP_MVC/login');
+        } else {
+            $out_put = '';
+            $allProducts = $this->modelProduct->buildQueryParams([
+                "select" => "*",
+                "where" => "",
+            ])->selectAll();
+            $out_put .= '
         <table class="customers">
             <thead>
                 <tr>
@@ -40,13 +44,13 @@ class ProductController extends Controller
                 </tr>
             </thead>
             <tbody>';
-        if (!empty($allProducts)) {
-            $string_Id = '';
-            foreach ($allProducts as $product) {
-                $string_Id .= $product["id"] . "/";
-            }
-            foreach ($allProducts as $product) {
-                $out_put .= '
+            if (!empty($allProducts)) {
+                $string_Id = '';
+                foreach ($allProducts as $product) {
+                    $string_Id .= $product["id"] . "/";
+                }
+                foreach ($allProducts as $product) {
+                    $out_put .= '
                 <tr>
                     <td id=' . "code_" .  $product["id"] . '>' . $product["code"] . '</td>
                     <td id=' . "name_" .  $product["id"] . '>' . $product["name"] . '</td>
@@ -60,23 +64,25 @@ class ProductController extends Controller
                     </td>
                 </tr>
             ';
-            }
-        } else {
-            $out_put .= '
+                }
+            } else {
+                $out_put .= '
             <tr>
                 <td colspan="5" style="text-align: center">No data</td>
             </tr>
         ';
-        }
-        $out_put .= '
+            }
+            $out_put .= '
         </tbody>
     </table>
     ';
-        $this->data['product_list'] = $out_put;
-        $this->render('products/index', $this->data);
+            $this->data['product_list'] = $out_put;
+            $this->render('products/index', $this->data);
+        }
     }
 
-    public function reloadData () {
+    public function reloadData()
+    {
         $out_put = '';
         $allProducts = $this->modelProduct->buildQueryParams([
             "select" => "*",

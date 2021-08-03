@@ -10,3 +10,4 @@ $routes['san-pham-update'] = "ProductController/update";
 $routes['san-pham-delete'] = "ProductController/delete";
 $routes['login'] = "User/index";
 $routes['login-validate'] = "User/handleLogin";
+$routes['logout'] = "User/handleLogout";
